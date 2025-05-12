@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conecta MPAC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --header-bg: #2ca64b;
+      --hero-bg: #bedcb1;
+      --header-font: #bedcb1;
+      --main-font: #114b2b;
+      --cta-bg: #2ca64b;
+      --cta-font: #1a3c1a;
+      --block-bg: #2ca64b;
+      --block-font: #073a1a;
+      --text-light: #e0f0e3;
+      --link-color: #238c3f;
+      --link-hover-color: #1a662e;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--hero-bg);
+      color: var(--main-font);
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+    header {
+      background: var(--header-bg);
+      color: var(--header-font);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 70px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo img {
+      height: 36px;
+    }
+    nav {
+      display: flex;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    nav a {
+      color: #103b22;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      font-family: 'Orbitron', Arial, sans-serif;
+      position: relative;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+    nav a:hover {
+      background-color: #bedcb1;
+      color: #103b22;
+      opacity: 1;
+    }
+    .hero {
+      /* background: var(--hero-bg); */ 
+      background: linear-gradient(to bottom, #bedcb1, #e9f5e5); 
+      /* min-height: 100vh; */ /* Removido */
+      display: flex;
+      align-items: center; /* Centralizar verticalmente agora que não tem min-height grande */
+      justify-content: center;
+      padding: 20px 0 100px 0; /* Adicionado padding vertical */
+      position: relative;
+    }
+    .hero-images {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 64px;
+      padding-bottom: 0; /* Removido o padding-bottom daqui, movido para o .hero */
+    }
+    .hero-images img {
+      max-width: 420px;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      animation: fadeInUp 0.7s ease-out forwards;
+    }
+    .hero-images img:first-child {
+      animation-delay: 0.2s;
+    }
+    .hero-images img:last-child {
+      animation-delay: 0.4s;
+    }
+    @media (max-width: 1100px) {
+      .hero-images {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 0 0 0;
+      }
+    }
+    @media (max-width: 700px) {
+      .hero-images {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 0 0 0;
+      }
+    }
+    .content-section {
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .content-section h2 {
+      font-size: 1.875rem;
+      margin-bottom: 45px;
+      color: var(--main-font);
+      font-family: 'Orbitron', Arial, sans-serif;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--cta-bg);
+      display: inline-block;
+    }
+    .content-section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--main-font);
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .content-section p a {
+      color: var(--link-color);
+      text-decoration: underline;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .content-section p a:hover {
+      color: var(--link-hover-color);
+      text-decoration: none;
+    }
+    .content-section ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 30px auto;
+      text-align: left;
+    }
+    .content-section ul li {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .content-section ul li::before {
+      content: "\2713";
+      color: var(--cta-bg);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      top: 2px;
+    }
+    .alt-bg {
+      background-color: #e6f4e7;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: var(--cta-bg);
+      color: #fff;
+      padding: 16px 32px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
+      font-family: 'Orbitron', Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .cta-button:hover {
+      background-color: #1e7b34;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    footer {
+      background-color: var(--header-bg);
+      color: var(--text-light);
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 1rem;
+    }
+    footer p {
+      margin: 8px 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      line-height: 1.6;
+    }
+    @media (max-width: 700px) {
+      .content-section {
+        padding: 40px 20px;
+      }
+      .content-section h2 {
+        font-size: 2rem;
+      }
+      .content-section p, .content-section ul li {
+        font-size: 1rem;
+      }
+      .hero-images {
+        gap: 32px;
+      }
+       .hero-images img {
+        max-width: 300px;
+      }
+      .hero {
+          padding: 40px 0 30px 0; /* Padding menor em telas pequenas */
+      }
+      .hero-images {
+        gap: 20px; 
+        /* padding-bottom: 10px; */ /* Removido, controle no .hero */
+      }
+    }
+    #sobre.content-section {
+      padding-top: 15px;
+    }
+    #programacao.content-section {
+    }
+    #inscricao.content-section {
+    }
+    #contato.content-section {
+    }
+    /* Keyframes para Animações */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .content-section, footer {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .content-section.is-visible, footer.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .content-section ul li::before {
+      content: "\2713"; /* Checkmark icon */
+      color: var(--cta-bg);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      top: 2px;
+    }
+
+    #programacao.content-section ul {
+      list-style: none;
+      padding: 0;
+      max-width: 700px; 
+      margin: 40px auto;
+      text-align: left;
+    }
+
+    #programacao.content-section ul li {
+      background-color: var(--hero-bg); 
+      border: 1px solid #dceadc; 
+      border-left: 5px solid var(--cta-bg); 
+      border-radius: 5px;
+      padding: 20px 25px;
+      margin-bottom: 20px; 
+      display: flex; 
+      align-items: center; 
+      gap: 20px; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+      font-family: 'Roboto', Arial, sans-serif;
+      font-size: 1.1rem;
+      position: relative; /* Mantido por segurança, mas ::before será sobrescrito */
+    }
+
+    #programacao.content-section ul li::before {
+      /* Sobrescrever o ::before geral das listas de .content-section */
+      content: ""; 
+      display: none; 
+    }
+
+    .programacao-horario {
+      font-weight: bold;
+      font-size: 1.2rem; 
+      color: var(--cta-bg);
+      min-width: 70px; 
+      /* font-family: 'Orbitron', Arial, sans-serif; */ /* Removido para usar Roboto */
+    }
+
+    .programacao-atividade {
+      flex-grow: 1; 
+      color: var(--main-font);
+    }
+
+    /* Estilos para o Logo Carousel */
+    .logo-carousel-wrapper {
+      padding: 15px 0; /* Reduzido de 30px para diminuir espaço acima */
+      /* background-color: var(--hero-bg); */ /* Mantido comentado */
+      /* Considerar adicionar um margin-bottom se o espaço com a próxima seção ficar pequeno */
+    }
+
+    .logo-carousel {
+      position: relative;
+      overflow: hidden;
+      /* background-color: white; */ /* Removido para fundo transparente */
+      border-radius: 10px;
+      /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); */ /* Removido */
+      max-width: 1100px; 
+      margin: 0 auto; 
+      padding: 20px 0; 
+    }
+
+    .logo-container {
+      display: flex;
+      animation: scroll-logos 15s linear infinite;
+      width: fit-content; 
+      will-change: transform; /* Adicionado para otimização */
+    }
+
+    .logo-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px; 
+      height: 80px;  
+      margin: 0 35px; 
+      transition: transform 0.3s ease;
+    }
+
+    .logo-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; 
+      /* filter: grayscale(100%); */ /* Removido filtro de escala de cinza */
+      opacity: 1; /* Alterado de 0.7 para opacidade total */
+      transition: opacity 0.3s ease; /* Mantida transição de opacidade se houver outros efeitos */
+    }
+
+    .logo-slide:hover img {
+      /* filter: grayscale(0%); */ /* Removido, pois não há filtro inicial */
+      opacity: 1; /* Já está 1, mas mantido por clareza ou se a opacidade base fosse menor */
+    }
+    
+    .logo-slide:hover {
+        transform: scale(1.1);
+    }
+
+    .pause-on-hover:hover .logo-container {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-logos {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* (Largura de 1 slide + margem horizontal total de 1 slide) * número de logos ORIGINAIS */
+        /* (200px + 35px*2) * 2 = (200px + 70px) * 2 = 270px * 2 = 540px */
+        transform: translateX(-540px); 
+      }
+    }
+
+    /* Ajustes responsivos para o carrossel */
+    @media (max-width: 768px) {
+      /* .logo-carousel-wrapper e .logo-carousel permanecem os mesmos */
+      .logo-carousel-wrapper {
+        padding: 10px 0; /* Ainda menor em telas pequenas */
+      }
+      .logo-carousel {
+        padding: 10px 0;
+      }
+
+      .logo-slide {
+        width: 150px; 
+        height: 60px; 
+        margin: 0 20px; 
+      }
+      @keyframes scroll-logos {
+        100% {
+          /* (150px + 20px*2) * 2 = (150px + 40px) * 2 = 190px * 2 = 380px */
+          transform: translateX(-380px);
+        }
+      }
+    }
+
+    /* Media Queries para Responsividade */
+
+    @media (max-width: 900px) { /* Nova query para telas médias/tablets */
+      nav {
+        gap: 20px; /* Reduzir gap da navegação */
+      }
+      .content-section p {
+        max-width: 650px; /* Reduzir max-width dos parágrafos */
+      }
+      #programacao.content-section ul {
+          max-width: 600px; /* Reduzir max-width da lista programação */
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding-top: 60px; /* Ajustar padding do body se altura do header mudar */
+      }
+      header {
+        height: 60px; /* Header um pouco menor */
+        padding: 0 15px;
+      }
+      .logo img {
+        height: 30px; /* Logo menor */
+      }
+
+      .hero-images {
+        gap: 20px; /* Reduzir gap das imagens hero */
+        padding-bottom: 10px;
+      }
+       .hero-images img {
+        max-width: 250px; /* Imagens hero um pouco menores */
+      }
+
+      #sobre.content-section {
+          padding-top: 10px; /* Ajuste fino */
+      }
+
+      .content-section {
+        padding: 50px 15px; /* Menos padding lateral e vertical nas seções */
+      }
+      .content-section h2 {
+        font-size: 1.5rem; /* Título de seção menor */
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+      }
+      .content-section p, .content-section ul li {
+        font-size: 0.95rem; /* Texto geral menor */
+      }
+
+      #programacao.content-section ul li {
+        flex-direction: column; /* Itens da programação em coluna */
+        align-items: flex-start; /* Alinhar à esquerda */
+        gap: 5px; /* Menos gap entre horário e atividade */
+        padding: 15px 20px;
+      }
+      .programacao-horario {
+        min-width: auto; /* Remover min-width */
+        font-size: 1rem; /* Horário um pouco menor */
+      }
+      .programacao-atividade {
+        font-size: 0.95rem;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 12px 25px;
+      }
+      footer {
+        padding: 40px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://static.wixstatic.com/media/c96204_3ac10e68f380408eb1b0945146752af4~mv2.png" alt="Logo Conecta MPAC">
+    </div>
+    <nav>
+      <a href="#sobre">SOBRE</a>
+      <a href="#programacao">PROGRAMAÇÃO</a>
+      <a href="#inscricao">INSCRIÇÃO</a>
+      <a href="#contato">CONTATO</a>
+    </nav>
+  </header>
+  <section class="hero">
+    <div class="hero-images" style="width:100%; display:flex; justify-content:center; align-items:center; gap:32px; margin-top:60px;">
+      <img src="https://static.wixstatic.com/media/c96204_219e2e585f044f40af8512efa1103e6b~mv2.png" alt="Hero decorativo 1" style="max-width:420px; width:100%; height:auto;">
+      <img src="https://static.wixstatic.com/media/c96204_6ecb278ae7bc4a67b5618e3d2079a316~mv2.png" alt="Hero decorativo 2" style="max-width:420px; width:100%; height:auto;">
+    </div>
+  </section>
+
+  <section class="logo-carousel-wrapper">
+    <div class="logo-carousel pause-on-hover">
+      <div class="logo-container">
+        <!-- Logos Originais -->
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
+        <!-- Logos Duplicadas (primeira repetição) -->
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
+        <!-- Logos Duplicadas (segunda repetição) -->
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="content-section">
+    <h2>SOBRE O CONECTA MPAC</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+
+  <section id="programacao" class="content-section alt-bg">
+    <h2>PROGRAMAÇÃO</h2>
+    <p>Detalhes sobre a programação do evento serão divulgados em breve. Fique atento!</p>
+    <ul>
+      <li><span class="programacao-horario">08:00</span><span class="programacao-atividade">Credenciamento</span></li>
+      <li><span class="programacao-horario">09:00</span><span class="programacao-atividade">Abertura Oficial</span></li>
+      <li><span class="programacao-horario">10:00</span><span class="programacao-atividade">Palestra Magna: Inovação no Setor Público</span></li>
+      <li><span class="programacao-horario">12:00</span><span class="programacao-atividade">Almoço</span></li>
+      <li><span class="programacao-horario">14:00</span><span class="programacao-atividade">Workshops Temáticos</span></li>
+      <li><span class="programacao-horario">16:00</span><span class="programacao-atividade">Painel de Debates: O Futuro da Gestão Pública</span></li>
+      <li><span class="programacao-horario">18:00</span><span class="programacao-atividade">Encerramento</span></li>
+    </ul>
+  </section>
+
+  <section id="inscricao" class="content-section">
+    <h2>INSCRIÇÃO</h2>
+    <p>As inscrições para o Conecta MPAC estarão abertas a partir de DD/MM/AAAA. Não perca a oportunidade de participar deste grande evento de inovação e transformação!</p>
+    <a href="#" class="cta-button">INSCREVA-SE EM BREVE</a>
+  </section>
+
+  <section id="contato" class="content-section alt-bg">
+    <h2>CONTATO</h2>
+    <p>Tem alguma dúvida ou sugestão? Entre em contato conosco:</p>
+    <p>Email: <a href="mailto:contato@conectampac.mp.br">contato@conectampac.mp.br</a></p>
+    <p>Telefone: (68) XXXX-XXXX</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Conecta MPAC. Todos os direitos reservados.</p>
+    <p>Uma iniciativa do Ministério Público do Estado do Acre.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sectionsToAnimate = document.querySelectorAll(".content-section, footer");
+
+      if (!sectionsToAnimate.length) return;
+
+      const observerOptions = {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.1 // 10% do elemento visível para disparar
+      };
+
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); // Animar apenas uma vez
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+      sectionsToAnimate.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html> 

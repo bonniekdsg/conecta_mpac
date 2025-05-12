@@ -336,9 +336,9 @@
 
     .logo-container {
       display: flex;
-      animation: scroll-logos 15s linear infinite;
+      animation: scroll-logos 25s linear infinite; /* Aumentada a duração para 25s */
       width: fit-content; 
-      will-change: transform; /* Adicionado para otimização */
+      will-change: transform; 
     }
 
     .logo-slide {
@@ -346,23 +346,34 @@
       align-items: center;
       justify-content: center;
       width: 200px; 
-      height: 80px;  
+      height: 80px;  /* Altura padrão */
       margin: 0 35px; 
       transition: transform 0.3s ease;
     }
 
+    .logo-slide.logo-poder-judiciario {
+      height: 100px; 
+    }
+
     .logo-slide img {
       max-width: 100%;
-      max-height: 100%;
+      max-height: 100%; /* Máximo padrão */
       object-fit: contain; 
-      /* filter: grayscale(100%); */ /* Removido filtro de escala de cinza */
-      opacity: 1; /* Alterado de 0.7 para opacidade total */
-      transition: opacity 0.3s ease; /* Mantida transição de opacidade se houver outros efeitos */
+      opacity: 1; 
+      transition: opacity 0.3s ease;
+      width: auto; /* Padrão para img */
+      height: auto; /* Padrão para img */
+    }
+    
+    /* Estilo específico para a IMAGEM do Poder Judiciário */
+    .logo-slide.logo-poder-judiciario img {
+        height: 90px; /* Altura explícita para a imagem */
+        width: auto;  /* Largura ajusta automaticamente */
+        max-height: none; /* Remover o limite de max-height padrão */
     }
 
     .logo-slide:hover img {
-      /* filter: grayscale(0%); */ /* Removido, pois não há filtro inicial */
-      opacity: 1; /* Já está 1, mas mantido por clareza ou se a opacidade base fosse menor */
+      opacity: 1; 
     }
     
     .logo-slide:hover {
@@ -378,9 +389,9 @@
         transform: translateX(0);
       }
       100% {
-        /* (Largura de 1 slide + margem horizontal total de 1 slide) * número de logos ORIGINAIS */
-        /* (200px + 35px*2) * 2 = (200px + 70px) * 2 = 270px * 2 = 540px */
-        transform: translateX(-540px); 
+        /* (Largura de 1 slide + margem horizontal total) * número de logos ORIGINAIS (agora 4) */
+        /* (200px + 70px) * 4 = 270px * 4 = 1080px */
+        transform: translateX(-1080px); 
       }
     }
 
@@ -401,8 +412,8 @@
       }
       @keyframes scroll-logos {
         100% {
-          /* (150px + 20px*2) * 2 = (150px + 40px) * 2 = 190px * 2 = 380px */
-          transform: translateX(-380px);
+          /* (150px + 40px) * 4 = 190px * 4 = 760px */
+          transform: translateX(-760px);
         }
       }
     }
@@ -495,24 +506,30 @@
     </nav>
   </header>
   <section class="hero">
-    <div class="hero-images" style="width:100%; display:flex; justify-content:center; align-items:center; gap:32px; margin-top:60px;">
-      <img src="https://static.wixstatic.com/media/c96204_219e2e585f044f40af8512efa1103e6b~mv2.png" alt="Hero decorativo 1" style="max-width:420px; width:100%; height:auto;">
-      <img src="https://static.wixstatic.com/media/c96204_6ecb278ae7bc4a67b5618e3d2079a316~mv2.png" alt="Hero decorativo 2" style="max-width:420px; width:100%; height:auto;">
+    <div class="hero-images">
+      <img src="https://static.wixstatic.com/media/c96204_72a8c8ea57f143649b9c4e2a2b39f909~mv2.png" alt="Hero decorativo 1">
+      <img src="https://static.wixstatic.com/media/c96204_796234e95769440e983ecfe08cc5d61c~mv2.png" alt="Hero decorativo 2">
     </div>
   </section>
 
   <section class="logo-carousel-wrapper">
     <div class="logo-carousel pause-on-hover">
       <div class="logo-container">
-        <!-- Logos Originais -->
+        <!-- Logos Originais (agora 4) -->
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_1bf83d8f3b94484fae8429bf633e02cb~mv2.png" alt="Logo Parceiro 3"></div>
+        <div class="logo-slide logo-poder-judiciario"><img src="https://static.wixstatic.com/media/c96204_dcd324d39c494f0284e27aa74519ce34~mv2.png" alt="Logo Parceiro 4"></div>
         <!-- Logos Duplicadas (primeira repetição) -->
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_1bf83d8f3b94484fae8429bf633e02cb~mv2.png" alt="Logo Parceiro 3"></div>
+        <div class="logo-slide logo-poder-judiciario"><img src="https://static.wixstatic.com/media/c96204_dcd324d39c494f0284e27aa74519ce34~mv2.png" alt="Logo Parceiro 4"></div>
         <!-- Logos Duplicadas (segunda repetição) -->
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_1bf83d8f3b94484fae8429bf633e02cb~mv2.png" alt="Logo Parceiro 3"></div>
+        <div class="logo-slide logo-poder-judiciario"><img src="https://static.wixstatic.com/media/c96204_dcd324d39c494f0284e27aa74519ce34~mv2.png" alt="Logo Parceiro 4"></div>
       </div>
     </div>
   </section>

@@ -34,6 +34,7 @@
       color: var(--main-font);
       padding-top: 70px;
       overflow-x: hidden;
+      box-sizing: border-box;
     }
     header {
       background: var(--header-bg);
@@ -48,6 +49,7 @@
       width: 100%;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
     .logo {
       display: flex;
@@ -121,7 +123,7 @@
     @media (max-width: 700px) {
       .hero-images {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Alterado de flex-start para center */
         padding: 24px 0 0 0;
       }
     }
@@ -430,7 +432,11 @@
 
     @media (max-width: 900px) { /* Nova query para telas médias/tablets */
       nav {
-        gap: 20px; /* Reduzir gap da navegação */
+        gap: 15px; /* Reduzido de 20px */
+      }
+      nav a {
+        font-size: 0.85rem; /* Reduzido de 0.9rem */
+        padding: 8px 12px; /* Padding horizontal reduzido */
       }
       .content-section p {
         max-width: 650px; /* Reduzir max-width dos parágrafos */
@@ -442,14 +448,81 @@
 
     @media (max-width: 700px) {
       body {
-        padding-top: 60px; /* Ajustar padding do body se altura do header mudar */
+        padding-top: 60px; /* Header volta a ser fixo, altura do header */
       }
       header {
-        height: 60px; /* Header um pouco menor */
-        padding: 0 15px;
+        position: fixed; /* Header volta a ser fixo */
+        height: 60px; /* Altura fixa para o header mobile */
+        flex-direction: row; /* Logo e hambúrguer na mesma linha */
+        justify-content: space-between; /* Logo à esquerda, hambúrguer à direita */
+        align-items: center; /* Centralizar verticalmente */
+        padding: 0 15px; /* Padding lateral */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra de volta */
+      }
+      .logo {
+        margin-bottom: 0; /* Resetar margem de quando era empilhado */
       }
       .logo img {
-        height: 30px; /* Logo menor */
+        height: 28px; /* Ajustar tamanho da logo se necessário */
+      }
+
+      .hamburger-menu {
+        display: flex !important; /* Mostrar o botão hambúrguer - TESTE COM !IMPORTANT */
+      }
+
+      nav {
+        position: fixed;
+        top: 60px; /* Abaixo do header */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px); /* Altura total menos header */
+        background-color: var(--header-bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 25px; /* Espaçamento entre links no menu mobile */
+        padding: 30px 0;
+        transform: translateX(100%); /* Escondido fora da tela à direita */
+        transition: transform 0.35s ease-in-out;
+        z-index: 1000; /* Abaixo do hambúrguer, mas acima do conteúdo */
+        /* Reset de margens e width que eram para desktop/tablet */
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+      }
+
+      nav.nav-active {
+        transform: translateX(0%); /* Mostrar menu */
+      }
+
+      nav a {
+        font-size: 1.1rem; /* Tamanho maior para links no menu mobile */
+        padding: 10px 25px; /* Área de clique maior */
+        color: var(--header-font); /* Cor original do header-font */
+      }
+      nav a:hover {
+        background-color: #bedcb1; /* Efeito hover original */
+        color: #103b22;
+      }
+
+      /* Animação do Hambúrguer para X com Posicionamento Absoluto */
+      .hamburger-menu.is-active .hamburger-line {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* As translações e rotações individuais cuidarão do resto */
+      }
+      .hamburger-menu.is-active .hamburger-line:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      .hamburger-menu.is-active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        /* Não precisa de transform se estiver apenas sumindo e position:absolute */
+        /* Se precisar manter no centro para alguma transição de opacidade, poderia ser: */
+        /* transform: translate(-50%, -50%); */ 
+      }
+      .hamburger-menu.is-active .hamburger-line:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(-45deg);
       }
 
       .hero-images {
@@ -461,7 +534,7 @@
       }
 
       #sobre.content-section {
-          padding-top: 10px; /* Ajuste fino */
+          padding-top: 0px; /* Mantido em 0px */
       }
 
       .content-section {
@@ -503,11 +576,11 @@
     /* Estilos para a seção Sobre com Grid */
     .sobre-grid-container {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
-      gap: 10px; /* Espaçamento entre as colunas */
-      align-items: start; /* Alterado de center para start */
-      margin-top: 0px; /* Reduzido de 40px para 20px */
-      max-width: 1100px; /* Limitar largura máxima do grid */
+      grid-template-columns: 1fr 1fr; 
+      gap: 10px; 
+      align-items: start; 
+      margin-top: 10px; /* Reduzido de 20px (ou 0px que o usuário pode ter testado) */
+      max-width: 1100px; 
       margin-left: auto;
       margin-right: auto;
     }
@@ -542,11 +615,12 @@
         max-width: 650px; /* Ajustar largura máxima para uma coluna */
       }
       .sobre-imagem {
-        order: -1; /* Imagem aparece primeiro em telas menores */
-        margin-bottom: 30px; /* Espaço abaixo da imagem quando ela está no topo */
+        /* order: -1; */ /* Removido - Imagem não será mais a primeira */
+        /* margin-bottom: 30px; */ /* Removido - Não é mais necessário aqui */
       }
       .sobre-texto {
         text-align: center; /* Centralizar texto quando em uma coluna */
+        margin-bottom: 30px; /* Adicionado para separar o texto da imagem abaixo */
       }
        /* Re-aplicar max-width para parágrafos quando em coluna única e centralizado */
       #sobre .sobre-texto p {
@@ -566,12 +640,12 @@
       /* Herda o .sobre-grid-container de 1 coluna do @media (max-width: 900px) */
       /* Ajustar padding da seção #sobre se necessário para telas muito pequenas */
       #sobre.content-section {
-          padding-top: 20px; /* Ajustado para dar mais espaço ao título */
-          padding-bottom: 50px; /* Mais espaço abaixo do grid */
+          padding-top: 0px; /* Mantido em 0px */
+          padding-bottom: 50px; 
       }
       .sobre-grid-container {
-          margin-top: 30px;
-          gap: 25px;
+          margin-top: 15px; /* Reduzido de 30px */
+          gap: 10px;
       }
       #sobre .sobre-texto p {
         max-width: 100%; /* Para ocupar a largura disponível */
@@ -635,6 +709,34 @@
       height: 22px;
       stroke: white; /* Cor da linha do SVG */
     }
+
+    /* Estilos Base para o Menu Hambúrguer */
+    .hamburger-menu {
+      display: none; 
+      background: transparent;
+      border: none; 
+      cursor: pointer;
+      padding: 10px; 
+      z-index: 1100; 
+      flex-direction: column; 
+      justify-content: space-around; 
+      align-items: center; 
+      height: 40px; 
+      width: 40px; 
+      box-sizing: border-box; 
+      position: relative; /* Adicionado para posicionamento absoluto dos filhos */
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 20px;  
+      height: 3px;  
+      background-color: #FFFFFF !important; 
+      margin: 2px 0; 
+      transition: transform 0.35s ease-out, opacity 0.3s ease-out; /* Duração igual ao menu, ease-out */
+      border-radius: 1px; 
+      transform-origin: center; 
+    }
   </style>
 </head>
 <body>
@@ -644,6 +746,11 @@
         <img src="https://static.wixstatic.com/media/c96204_3ac10e68f380408eb1b0945146752af4~mv2.png" alt="Logo Conecta MPAC">
       </a>
     </div>
+    <button class="hamburger-menu" aria-label="Abrir menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
     <nav>
       <a href="#sobre">SOBRE</a>
       <a href="#programacao">PROGRAMAÇÃO</a>
@@ -793,6 +900,39 @@
         window.scrollTo({
           top: 0,
           behavior: "smooth"
+        });
+      });
+    }
+
+    // Código para o Menu Hambúrguer
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navMenu = document.querySelector('header nav'); // Selecionar a nav dentro do header
+
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('is-active');
+        navMenu.classList.toggle('nav-active');
+        
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+
+        if (navMenu.classList.contains('nav-active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+
+      document.querySelectorAll('header nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          // Verificar se estamos no modo mobile (hamburger visível)
+          const hamburgerIsVisible = getComputedStyle(hamburger).display !== 'none';
+          if (hamburgerIsVisible && navMenu.classList.contains('nav-active')) {
+            hamburger.classList.remove('is-active');
+            navMenu.classList.remove('nav-active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          }
         });
       });
     }

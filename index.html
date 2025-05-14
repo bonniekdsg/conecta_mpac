@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conecta MPAC</title>
   <link rel="icon" href="https://static.wixstatic.com/media/c96204_d76363b509e348b5a3e6d6117df826fa~mv2.png" type="image/png">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Conecta MPAC" />
+  <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+  <meta property="og:image" content="https://static.wixstatic.com/media/c96204_b4d7ee89db8a40b68d27dc597aaefb80~mv2.png" />
+  <meta property="og:url" content="https://www.conectampac.mp.br" />
+  <meta property="og:type" content="website" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -587,12 +594,55 @@
       margin-bottom: 30px; /* Espaçamento abaixo do título */
       display: inline-block; /* Para a borda não ocupar a largura toda */
     }
+
+    #btnVoltarTopo {
+      position: fixed;
+      bottom: 25px; /* Levemente ajustado */
+      right: 25px;  /* Levemente ajustado */
+      z-index: 1001;
+      background-color: var(--cta-bg);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      transform: translateY(20px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* Sombra adicionada */
+      display: flex; /* Para centralizar o SVG */
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    #btnVoltarTopo.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #btnVoltarTopo:hover {
+      background-color: #1e7b34;
+      transform: scale(1.1) translateY(-2px); /* Efeito de zoom e leve elevação */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Sombra mais pronunciada no hover */
+    }
+
+    #btnVoltarTopo svg {
+      width: 22px; /* Ajustar tamanho do ícone SVG */
+      height: 22px;
+      stroke: white; /* Cor da linha do SVG */
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="https://static.wixstatic.com/media/c96204_3ac10e68f380408eb1b0945146752af4~mv2.png" alt="Logo Conecta MPAC">
+      <a href="#" style="text-decoration: none; display: flex; align-items: center;">
+        <img src="https://static.wixstatic.com/media/c96204_3ac10e68f380408eb1b0945146752af4~mv2.png" alt="Logo Conecta MPAC">
+      </a>
     </div>
     <nav>
       <a href="#sobre">SOBRE</a>
@@ -676,6 +726,12 @@
     <p>Uma iniciativa do Ministério Público do Estado do Acre.</p>
   </footer>
 
+  <a href="#" id="btnVoltarTopo" title="Voltar ao topo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </a>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const sectionsToAnimate = document.querySelectorAll(".content-section, footer");
@@ -702,6 +758,44 @@
         observer.observe(section);
       });
     });
+
+    // Código para o botão Voltar ao Topo
+    const btnVoltarTopo = document.getElementById("btnVoltarTopo");
+    const alturaParaMostrarBotao = 200; // Em pixels
+
+    if (btnVoltarTopo) {
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > alturaParaMostrarBotao) {
+          btnVoltarTopo.classList.add("show");
+          // A propriedade display: none inline inicial precisa ser removida para a animação funcionar
+          // Uma vez que a classe 'show' controla visibility, não precisamos mais de display: block aqui
+          // Se o botão foi adicionado com style="display: none;", precisamos removê-lo ou sobrescrevê-lo.
+          // A forma mais limpa é garantir que o .show lide com isso.
+          // Para o CSS que usei, .show já torna visível. 
+          // Mas o style inline original `display: none` tem alta especificidade.
+          // Vamos garantir que `display: flex` seja aplicado quando `.show` está presente e o CSS também o defina.
+          btnVoltarTopo.style.display = "flex"; 
+        } else {
+          btnVoltarTopo.classList.remove("show");
+          // Para a transição de saída funcionar, não podemos setar display: none imediatamente.
+          // A classe .show removida fará opacity: 0 e visibility: hidden.
+          // Adicionamos um timeout para setar display: none APÓS a transição.
+          setTimeout(() => {
+            if (!btnVoltarTopo.classList.contains('show')) {
+              btnVoltarTopo.style.display = "none";
+            }
+          }, 300); // Duração da transição CSS
+        }
+      });
+
+      btnVoltarTopo.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevenir o comportamento padrão do link '#'
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    }
   </script>
 </body>
 </html> 

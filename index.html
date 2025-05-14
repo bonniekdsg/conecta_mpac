@@ -491,6 +491,100 @@
         font-size: 0.9rem;
       }
     }
+
+    /* Estilos para a seção Sobre com Grid */
+    .sobre-grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
+      gap: 40px; /* Espaçamento entre as colunas */
+      align-items: start; /* Alterado de center para start */
+      margin-top: 40px; /* Espaço abaixo do título */
+      max-width: 1100px; /* Limitar largura máxima do grid */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sobre-texto {
+      text-align: left;
+    }
+
+    /* Ajuste para parágrafos dentro do grid não herdarem centralização/max-width indesejado */
+    #sobre .sobre-texto p {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: none; 
+      text-align: left; /* Garantir alinhamento à esquerda */
+    }
+
+    .sobre-imagem img {
+      width: 100%; 
+      max-width: 450px; 
+      height: auto;   
+      border-radius: 8px; 
+      display: block; 
+      margin: 0 auto; 
+    }
+
+    /* Media Queries para Responsividade da seção Sobre */
+    @media (max-width: 900px) {
+      .sobre-grid-container {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: 30px;
+        max-width: 650px; /* Ajustar largura máxima para uma coluna */
+      }
+      .sobre-imagem {
+        order: -1; /* Imagem aparece primeiro em telas menores */
+        margin-bottom: 30px; /* Espaço abaixo da imagem quando ela está no topo */
+      }
+      .sobre-texto {
+        text-align: center; /* Centralizar texto quando em uma coluna */
+      }
+       /* Re-aplicar max-width para parágrafos quando em coluna única e centralizado */
+      #sobre .sobre-texto p {
+        max-width: 650px; /* Ou o valor que estava em .content-section p para tablet */
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left; /* Manter texto justificado à esquerda mesmo no container centralizado */
+      }
+      /* Ajuste para o título dentro da coluna de texto em telas menores */
+      #sobre .sobre-texto h2 {
+        text-align: center; /* Centralizar o título quando o texto também está centralizado */
+        margin-bottom: 30px; /* Espaço abaixo do título, igual ao .content-section h2 */
+      }
+    }
+
+    @media (max-width: 700px) {
+      /* Herda o .sobre-grid-container de 1 coluna do @media (max-width: 900px) */
+      /* Ajustar padding da seção #sobre se necessário para telas muito pequenas */
+      #sobre.content-section {
+          padding-top: 20px; /* Ajustado para dar mais espaço ao título */
+          padding-bottom: 50px; /* Mais espaço abaixo do grid */
+      }
+      .sobre-grid-container {
+          margin-top: 30px;
+          gap: 25px;
+      }
+      #sobre .sobre-texto p {
+        max-width: 100%; /* Para ocupar a largura disponível */
+      }
+       /* O título já deve estar centralizado devido à regra anterior, mas podemos confirmar se necessário */
+      #sobre .sobre-texto h2 {
+        font-size: 1.5rem; /* Ajustar tamanho da fonte se necessário, igual ao .content-section h2 mobile */
+        margin-bottom: 25px; /* Ajustar margem se necessário */
+      }
+    }
+
+    /* Estilos para o título h2 dentro da coluna .sobre-texto */
+    .sobre-texto h2 {
+      font-size: 1.875rem; /* Mesmo tamanho dos outros títulos de seção */
+      font-family: 'Orbitron', Arial, sans-serif; /* Mesma fonte */
+      color: var(--main-font); /* Mesma cor */
+      text-align: left; /* Alinhamento à esquerda */
+      border-bottom: 3px solid var(--cta-bg); /* Mesma borda */
+      padding-bottom: 15px; /* Mesmo padding */
+      margin-bottom: 30px; /* Espaçamento abaixo do título */
+      display: inline-block; /* Para a borda não ocupar a largura toda */
+    }
   </style>
 </head>
 <body>
@@ -535,9 +629,16 @@
   </section>
 
   <section id="sobre" class="content-section">
-    <h2>SOBRE O CONECTA MPAC</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div class="sobre-grid-container">
+      <div class="sobre-texto">
+        <h2>SOBRE O CONECTA MPAC</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="sobre-imagem">
+        <img src="https://static.wixstatic.com/media/c96204_6d89966c769044deaf6fe41bea1bdc73~mv2.png" alt="Sobre o Conecta MPAC">
+      </div>
+    </div>
   </section>
 
   <section id="programacao" class="content-section alt-bg">
@@ -568,7 +669,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2024 Conecta MPAC. Todos os direitos reservados.</p>
+    <p>&copy; 2025 Conecta MPAC. Todos os direitos reservados.</p>
     <p>Uma iniciativa do Ministério Público do Estado do Acre.</p>
   </footer>
 

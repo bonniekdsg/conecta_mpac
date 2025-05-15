@@ -113,6 +113,11 @@
     .hero-images img:last-child {
       animation-delay: 0.4s;
     }
+    .hero-cta-button {
+      margin-top: 40px; /* Espaço entre as imagens e o botão */
+      opacity: 0;
+      animation: fadeInUp 0.7s ease-out 0.6s forwards; /* Delay para aparecer depois das imagens */
+    }
     @media (max-width: 1100px) {
       .hero-images {
         flex-direction: column;
@@ -121,10 +126,18 @@
       }
     }
     @media (max-width: 700px) {
+      .hero {
+          padding: 40px 0 30px 0; /* Padding menor em telas pequenas */
+          flex-direction: column; /* Empilha os itens da hero (imagens e botão) */
+          align-items: center;    /* Centraliza os itens empilhados horizontalmente */
+      }
       .hero-images {
         flex-direction: column;
         align-items: center; /* Alterado de flex-start para center */
         padding: 24px 0 0 0;
+      }
+      .hero-cta-button {
+        margin-top: 30px; /* Ajuste de margem para mobile */
       }
     }
     .content-section {
@@ -218,6 +231,12 @@
       font-family: 'Roboto', Arial, sans-serif;
       line-height: 1.6;
     }
+    .footer-logo-seringal {
+      display: block;
+      margin: 20px auto 0 auto; /* Margem superior e centralização horizontal */
+      max-width: 200px; /* Ajuste conforme necessário */
+      height: auto;
+    }
     @media (max-width: 700px) {
       .content-section {
         padding: 40px 20px;
@@ -244,12 +263,6 @@
     }
     #sobre.content-section {
       padding-top: 0px; /* Reduzido de 15px para 0px */
-    }
-    #programacao.content-section {
-    }
-    #inscricao.content-section {
-    }
-    #contato.content-section {
     }
     /* Keyframes para Animações */
     @keyframes fadeInUp {
@@ -324,6 +337,15 @@
     .programacao-atividade {
       flex-grow: 1; 
       color: var(--main-font);
+    }
+
+    .programacao-imagem {
+      display: block;
+      margin: 30px auto 0 auto; /* Margem acima e centralizada horizontalmente */
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px; /* Opcional: para cantos arredondados */
+      /* box-shadow: 0 4px 10px rgba(0,0,0,0.1); */ /* Sombra removida */
     }
 
     /* Estilos para o Logo Carousel */
@@ -763,6 +785,7 @@
       <img src="https://static.wixstatic.com/media/c96204_72a8c8ea57f143649b9c4e2a2b39f909~mv2.png" alt="Hero decorativo 1">
       <img src="https://static.wixstatic.com/media/c96204_796234e95769440e983ecfe08cc5d61c~mv2.png" alt="Hero decorativo 2">
     </div>
+    <a href="#inscricao" class="cta-button hero-cta-button">Faça sua inscrição</a>
   </section>
 
   <section class="logo-carousel-wrapper">
@@ -791,9 +814,8 @@
     <div class="sobre-grid-container">
       <div class="sobre-texto">
         <h2>SOBRE O CONECTA MPAC</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p><strong>O Conecta MP é um evento institucional de inovação do Ministério Público do Estado do Acre (MPAC)</strong>, idealizado para fortalecer a cultura da inovação pública. Reunindo servidores, parceiros estratégicos e representantes do ecossistema de inovação, o evento promove palestras, painéis, exposições e trocas de experiências.</p>
+        <p>É um espaço colaborativo para explorar métodos criativos, debater desafios estratégicos e construir soluções transformadoras para o serviço público.</p>
       </div>
       <div class="sobre-imagem">
         <img src="https://static.wixstatic.com/media/c96204_f808bd7805f14f40a7edca2bcf724e48~mv2.png" alt="Sobre o Conecta MPAC">
@@ -803,34 +825,27 @@
 
   <section id="programacao" class="content-section alt-bg">
     <h2>PROGRAMAÇÃO</h2>
-    <p>Detalhes sobre a programação do evento serão divulgados em breve. Fique atento!</p>
-    <ul>
-      <li><span class="programacao-horario">08:00</span><span class="programacao-atividade">Credenciamento</span></li>
-      <li><span class="programacao-horario">09:00</span><span class="programacao-atividade">Abertura Oficial</span></li>
-      <li><span class="programacao-horario">10:00</span><span class="programacao-atividade">Palestra Magna: Inovação no Setor Público</span></li>
-      <li><span class="programacao-horario">12:00</span><span class="programacao-atividade">Almoço</span></li>
-      <li><span class="programacao-horario">14:00</span><span class="programacao-atividade">Workshops Temáticos</span></li>
-      <li><span class="programacao-horario">16:00</span><span class="programacao-atividade">Painel de Debates: O Futuro da Gestão Pública</span></li>
-      <li><span class="programacao-horario">18:00</span><span class="programacao-atividade">Encerramento</span></li>
-    </ul>
+    <img src="https://static.wixstatic.com/media/c96204_ebfe21ecfdde452290b1e208c8bb9e27~mv2.png" alt="Programação do Evento Conecta MPAC" class="programacao-imagem">
   </section>
 
   <section id="inscricao" class="content-section">
     <h2>INSCRIÇÃO</h2>
-    <p>As inscrições para o Conecta MPAC estarão abertas a partir de DD/MM/AAAA. Não perca a oportunidade de participar deste grande evento de inovação e transformação!</p>
-    <a href="#" class="cta-button">INSCREVA-SE EM BREVE</a>
+    <p>Garanta sua vaga e participe de um evento que <br>inspira inovação e transformação no setor público!</p>
+      
+    <a href="#" class="cta-button">FAÇA SUA INSCRIÇÃO!</a>
   </section>
 
   <section id="contato" class="content-section alt-bg">
     <h2>CONTATO</h2>
     <p>Tem alguma dúvida ou sugestão? Entre em contato conosco:</p>
-    <p>Email: <a href="mailto:contato@conectampac.mp.br">contato@conectampac.mp.br</a></p>
-    <p>Telefone: (68) XXXX-XXXX</p>
+    <p>Email: <a href="mailto:seringallab@mpac.mp.br">seringallab@mpac.mp.br</a></p>
+
   </section>
 
   <footer>
     <p>&copy; 2025 Conecta MPAC. Todos os direitos reservados.</p>
     <p>Uma iniciativa do Ministério Público do Estado do Acre.</p>
+    <img src="https://static.wixstatic.com/media/c96204_8c637876bb894eadaadce7a519f0cf02~mv2.png" alt="Logo Seringal Lab MPAC" class="footer-logo-seringal">
   </footer>
 
   <a href="#" id="btnVoltarTopo" title="Voltar ao topo">

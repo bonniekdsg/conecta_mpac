@@ -348,6 +348,14 @@
       /* box-shadow: 0 4px 10px rgba(0,0,0,0.1); */ /* Sombra removida */
     }
 
+    .inscricao-imagem {
+      display: block;
+      margin: 30px auto; /* Margem acima e abaixo, centralizada horizontalmente */
+      max-width: 20%; /* Reduzido de 100% para 50% */
+      height: auto;
+      border-radius: 8px; /* Cantos arredondados */
+    }
+
     /* Estilos para o Logo Carousel */
     .logo-carousel-wrapper {
       padding: 15px 0; /* Reduzido de 30px para diminuir espaço acima */
@@ -421,9 +429,9 @@
         transform: translateX(0);
       }
       100% {
-        /* (Largura de 1 slide + margem horizontal total) * número de logos ORIGINAIS (agora 4) */
-        /* (200px + 70px) * 4 = 270px * 4 = 1080px */
-        transform: translateX(-1080px); 
+        /* (Largura de 1 slide + margem horizontal total) * número de logos ORIGINAIS (agora 6) */
+        /* (200px + 70px) * 6 = 270px * 6 = 1620px */
+        transform: translateX(-1620px); 
       }
     }
 
@@ -444,8 +452,8 @@
       }
       @keyframes scroll-logos {
         100% {
-          /* (150px + 40px) * 4 = 190px * 4 = 760px */
-          transform: translateX(-760px);
+          /* (150px + 40px) * 6 = 190px * 6 = 1140px */
+          transform: translateX(-1140px);
         }
       }
     }
@@ -785,27 +793,33 @@
       <img src="https://static.wixstatic.com/media/c96204_72a8c8ea57f143649b9c4e2a2b39f909~mv2.png" alt="Hero decorativo 1">
       <img src="https://static.wixstatic.com/media/c96204_796234e95769440e983ecfe08cc5d61c~mv2.png" alt="Hero decorativo 2">
     </div>
-    <a href="#inscricao" class="cta-button hero-cta-button">Faça sua inscrição</a>
+    <a href="https://forms.office.com/pages/responsepage.aspx?id=FUsaJghsTEiaY3xYiwdq7P4KZ93CLJ1CsphmUqCk0tBUME83NTlNWUVHWFVHQVI0S0U4NlJQMVhKUS4u&route=shorturl" class="cta-button hero-cta-button" target="_blank">Faça sua inscrição</a>
   </section>
 
   <section class="logo-carousel-wrapper">
     <div class="logo-carousel pause-on-hover">
       <div class="logo-container">
-        <!-- Logos Originais (agora 4) -->
+        <!-- Logos Originais (agora 6) -->
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_1bf83d8f3b94484fae8429bf633e02cb~mv2.png" alt="Logo Parceiro 3"></div>
         <div class="logo-slide logo-poder-judiciario"><img src="https://static.wixstatic.com/media/c96204_dcd324d39c494f0284e27aa74519ce34~mv2.png" alt="Logo Parceiro 4"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_6f1a135f154044b191763125451b8a16~mv2.png" alt="Logo Parceiro 5"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_bd0c2df1a396443e95e7de96601dae93~mv2.png" alt="Logo Parceiro 6"></div>
         <!-- Logos Duplicadas (primeira repetição) -->
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_1bf83d8f3b94484fae8429bf633e02cb~mv2.png" alt="Logo Parceiro 3"></div>
         <div class="logo-slide logo-poder-judiciario"><img src="https://static.wixstatic.com/media/c96204_dcd324d39c494f0284e27aa74519ce34~mv2.png" alt="Logo Parceiro 4"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_6f1a135f154044b191763125451b8a16~mv2.png" alt="Logo Parceiro 5"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_bd0c2df1a396443e95e7de96601dae93~mv2.png" alt="Logo Parceiro 6"></div>
         <!-- Logos Duplicadas (segunda repetição) -->
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_7fc028fe620c4e6a8bfccd53c6d21226~mv2.png" alt="Logo Parceiro 1"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_b76262cbf40e4a868bd5b07dfd7e02f4~mv2.png" alt="Logo Parceiro 2"></div>
         <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_1bf83d8f3b94484fae8429bf633e02cb~mv2.png" alt="Logo Parceiro 3"></div>
         <div class="logo-slide logo-poder-judiciario"><img src="https://static.wixstatic.com/media/c96204_dcd324d39c494f0284e27aa74519ce34~mv2.png" alt="Logo Parceiro 4"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_6f1a135f154044b191763125451b8a16~mv2.png" alt="Logo Parceiro 5"></div>
+        <div class="logo-slide"><img src="https://static.wixstatic.com/media/c96204_bd0c2df1a396443e95e7de96601dae93~mv2.png" alt="Logo Parceiro 6"></div>
       </div>
     </div>
   </section>
@@ -830,9 +844,10 @@
 
   <section id="inscricao" class="content-section">
     <h2>INSCRIÇÃO</h2>
+    <img src="https://static.wixstatic.com/media/c96204_5713645c44914da995fb9561afb934ba~mv2.png" alt="Inscrição Conecta MPAC" class="inscricao-imagem">
     <p>Garanta sua vaga e participe de um evento que <br>inspira inovação e transformação no setor público!</p>
       
-    <a href="#" class="cta-button">FAÇA SUA INSCRIÇÃO!</a>
+    <a href="https://forms.office.com/pages/responsepage.aspx?id=FUsaJghsTEiaY3xYiwdq7P4KZ93CLJ1CsphmUqCk0tBUME83NTlNWUVHWFVHQVI0S0U4NlJQMVhKUS4u&route=shorturl" class="cta-button" target="_blank">FAÇA SUA INSCRIÇÃO!</a>
   </section>
 
   <section id="contato" class="content-section alt-bg">

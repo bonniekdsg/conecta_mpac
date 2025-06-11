@@ -603,6 +603,235 @@
       }
     }
 
+    /* Melhorias para a seção Programação */
+    .programa-data {
+      background: linear-gradient(135deg, var(--cta-bg), #238c3f);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 30px auto 40px auto;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(44, 166, 75, 0.3);
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .programa-data::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .programacao-timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .programacao-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--cta-bg), #1e7b34);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+      text-align: right;
+      margin-right: calc(50% + 40px);
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: calc(50% + 40px);
+      text-align: left;
+    }
+
+    .timeline-content {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border: 1px solid #e6f4e7;
+      width: calc(50% - 40px);
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      border-color: var(--cta-bg);
+    }
+
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      right: -20px;
+      border-left-color: white;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::before {
+      left: -20px;
+      border-right-color: white;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--cta-bg);
+      border: 4px solid white;
+      border-radius: 50%;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(44, 166, 75, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-marker {
+      transform: translateX(-50%) scale(1.3);
+      background: #1e7b34;
+    }
+
+         .evento-horario {
+       font-weight: bold;
+       font-size: 1.1rem;
+       color: var(--cta-bg);
+       margin-bottom: 10px;
+       display: flex;
+       align-items: center;
+       gap: 8px;
+     }
+
+    .evento-horario::before {
+      content: '🕐';
+      font-size: 1.2rem;
+    }
+
+    .evento-titulo {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: var(--main-font);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .evento-descricao {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .evento-tipo {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tipo-palestra { background: #e8f5e8; color: var(--cta-bg); }
+    .tipo-painel { background: #fff3cd; color: #856404; }
+    .tipo-quiz { background: #f0e6ff; color: #6f42c1; }
+    .tipo-intervalo { background: #f8f9fa; color: #6c757d; }
+    .tipo-networking { background: #ffe6e6; color: #dc3545; }
+    .tipo-abertura { background: #d1ecf1; color: #0c5460; }
+
+    /* Responsividade da Timeline */
+    @media (max-width: 900px) {
+      .programacao-timeline::before {
+        left: 30px;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 70px;
+        margin-right: 0;
+        text-align: left;
+        width: calc(100% - 70px);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::before,
+      .timeline-item:nth-child(even) .timeline-content::before {
+        left: -20px;
+        right: auto;
+        border-right-color: white;
+        border-left-color: transparent;
+      }
+
+      .timeline-marker {
+        left: 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .programacao-timeline {
+        padding: 10px;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        margin-left: 50px !important;
+        width: calc(100% - 50px) !important;
+      }
+
+      .programa-data {
+        margin: 20px auto 30px auto;
+        padding: 15px;
+        font-size: 1rem;
+      }
+
+      .evento-horario {
+        font-size: 1rem;
+      }
+
+      .evento-titulo {
+        font-size: 1rem;
+      }
+    }
+
     /* Estilos para a seção Sobre com Grid */
     .sobre-grid-container {
       display: grid;
@@ -839,7 +1068,149 @@
 
   <section id="programacao" class="content-section alt-bg">
     <h2>PROGRAMAÇÃO</h2>
-    <img src="https://static.wixstatic.com/media/c96204_ebfe21ecfdde452290b1e208c8bb9e27~mv2.png" alt="Programação do Evento Conecta MPAC" class="programacao-imagem">
+    
+    <div class="programa-data">— 04 DE JULHO DE 2025 —</div>
+    
+    <div class="programacao-timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">08h30 às 09h00</div>
+          <div class="evento-titulo">Credenciamento</div>
+          <span class="evento-tipo tipo-abertura">Abertura</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">09h00 às 09h30</div>
+          <div class="evento-titulo">Abertura Oficial</div>
+          <div class="evento-descricao">Cerimônia de abertura do evento com autoridades</div>
+          <span class="evento-tipo tipo-abertura">Cerimônia</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">09h35 às 10h15</div>
+          <div class="evento-titulo">Apresentação do SeringalLab</div>
+          <div class="evento-descricao">Conheça os projetos e iniciativas do laboratório de inovação</div>
+          <span class="evento-tipo tipo-palestra">Palestra</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">10h20 às 10h50</div>
+          <div class="evento-titulo">• Lançamento do Quizz <BR>• Pílulas de Inovação</div>
+          <div class="evento-descricao">Projeto Reconhecer e Projeto Ewé (LAPIS-TJAC)</div>
+          <span class="evento-tipo tipo-quiz">Pílulas de Inovação</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">10h55 às 11h25</div>
+                     <div class="evento-titulo">•Momento Quizz <br>• Painel "Conexões que transformam"</div>
+          <div class="evento-descricao">Discussão com MPAC, TJAC, TRE, PAVIC-UFAC, IFAC</div>
+          <span class="evento-tipo tipo-painel">Painel</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">11h30 às 12h00</div>
+          <div class="evento-titulo">Projeto RondonIA</div>
+          <div class="evento-descricao">Apresentadas pelo MPRO</div>
+          <span class="evento-tipo tipo-palestra">Pílulas de Inovação</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">12h00 às 14h00</div>
+          <div class="evento-titulo">Intervalo para Almoço</div>
+          <div class="evento-descricao">Pausa para networking e refeição</div>
+          <span class="evento-tipo tipo-intervalo">Intervalo</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">14h00 às 15h30</div>
+          <div class="evento-titulo">Inovação no Setor Público</div>
+          <div class="evento-descricao"><strong>Palestra com André Tamura</strong>, Cofundador e Diretor Executivo da WeGov. Formado em Administração de Empresas e Ciências Econômicas, possui uma trajetória marcada por iniciativas que promovem transformações sociais e institucionais.</div>
+          <span class="evento-tipo tipo-palestra">Palestra</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">15h35 às 16h05</div>
+          <div class="evento-titulo">•Momento Quizz <br>• CPSI</div>
+          <div class="evento-descricao">Contrato Público para Solução Inovadora (Inova_MPRJ) - <strong>Apresentação Online</strong></div>
+          <span class="evento-tipo tipo-quiz">Pílulas de Inovação</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">16h05 às 16h20</div>
+          <div class="evento-titulo">Coffee Break</div>
+          <div class="evento-descricao">Pausa para café e networking</div>
+          <span class="evento-tipo tipo-intervalo">Pausa</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">16h20 às 16h50</div>
+          <div class="evento-titulo">Melhoria de qualidade de imagens digitais</div>
+          <div class="evento-descricao">Pavic Lab UFAC</div>
+          <span class="evento-tipo tipo-palestra">Pílulas de Inovação</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">16h55 às 17h30</div>
+          <div class="evento-titulo">Solução de segurança</div>
+          <div class="evento-descricao">Solução Zero Trust Open Sourc e Monitoramento da Transmissão de Resultados das Eleições 2024 com georreferenciamento (NULAB-TRE)</div>
+          <span class="evento-tipo tipo-palestra">Pílulas de Inovação</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">17h30 às 18h00</div>
+          <div class="evento-titulo">Quizz Final & Premiação</div>
+          <div class="evento-descricao">Momento final do quizz e premiação do vencedor</div>
+          <span class="evento-tipo tipo-quiz">Premiação</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="evento-horario">18h00</div>
+          <div class="evento-titulo">Design Drinking</div>
+          <div class="evento-descricao">Happy Hour de aniversário do SeringalLab</div>
+          <span class="evento-tipo tipo-networking">Networking</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="inscricao" class="content-section">
@@ -904,12 +1275,7 @@
       window.addEventListener("scroll", () => {
         if (window.pageYOffset > alturaParaMostrarBotao) {
           btnVoltarTopo.classList.add("show");
-          // A propriedade display: none inline inicial precisa ser removida para a animação funcionar
-          // Uma vez que a classe 'show' controla visibility, não precisamos mais de display: block aqui
-          // Se o botão foi adicionado com style="display: none;", precisamos removê-lo ou sobrescrevê-lo.
-          // A forma mais limpa é garantir que o .show lide com isso.
-          // Para o CSS que usei, .show já torna visível. 
-          // Mas o style inline original `display: none` tem alta especificidade.
+  
           // Vamos garantir que `display: flex` seja aplicado quando `.show` está presente e o CSS também o defina.
           btnVoltarTopo.style.display = "flex"; 
         } else {
